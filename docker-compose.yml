@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  # Messaging server
+  nats:
+    container_name: nats
+    restart: always
+    image: nats:2.7.0-alpine
+    ports:
+      - 4222:4222
+
+  # Server
+  server:
+    container_name: server
+    restart: always
+    image: server
+    build: ./server
+    ports:
+      - 3000:3000
+    environment:
+      - SERVER_PORT=3000
+      - NATS_SERVERS=nats://nats:4222
+    depends_on:
+      - nats
+
+  # Client-1
+  client_1:
+    container_name: client-1
+    restart: always
+    image: client
+    build: ./client
+    ports:
+      - 3001:80
+    environment:
+      - WEBSOCKET_URL=ws://127.0.0.1:3000
+
+  # Client-2
+  client_2:
+    container_name: client-2
+    restart: always
+    image: client
+    ports:
+      - 3002:80
+    environment:
+      - WEBSOCKET_URL=ws://127.0.0.1:3000
+
+  # Client-3
+  client_3:
+    container_name: client-3
+    restart: always
+    image: client
+    ports:
+      - 3003:80
+    environment:
+      - WEBSOCKET_URL=ws://127.0.0.1:3000
