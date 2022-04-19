@@ -1,0 +1,24 @@
+{
+  "name": "chat_app_client",
+  "version": "1.0.0",
+  "description": "This is the client side of the chat-app",
+  "main": "app.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chat-app",
+    "websocket",
+    "typeScript"
+  ],
+  "author": "Kamrul Islam",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "typescript": "^4.6.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13"
+  }
+}

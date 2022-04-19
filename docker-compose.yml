@@ -30,8 +30,9 @@ services:
     image: client
     build: ./client
     ports:
-      - 3001:80
+      - 3001:4000
     environment:
+      - CLIENT_PORT=4000
       - WEBSOCKET_URL=ws://127.0.0.1:3000
 
   # Client-2
@@ -40,8 +41,9 @@ services:
     restart: always
     image: client
     ports:
-      - 3002:80
+      - 3002:4000
     environment:
+      - CLIENT_PORT=4000
       - WEBSOCKET_URL=ws://127.0.0.1:3000
 
   # Client-3
@@ -50,6 +52,7 @@ services:
     restart: always
     image: client
     ports:
-      - 3003:80
+      - 3003:4000
     environment:
+      - CLIENT_PORT=4000
       - WEBSOCKET_URL=ws://127.0.0.1:3000
